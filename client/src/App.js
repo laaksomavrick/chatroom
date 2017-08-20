@@ -3,12 +3,22 @@ import './App.css';
 
 class App extends Component {
 
-  state = {messages: []}
+  state = {
+      messages: []
+    }
+
+    //redux, websockets for messages, component split up, users, auth, rooms
 
   componentDidMount() {
+      //todo: create abstraction for checking status codes + returning result in std fmt
     fetch('/api/v1/chat')
      .then(res => { return res.json() } )
-     .then(json => this.setState( {messages: json["messages"]} ))
+     .then(json => { 
+            if (json.messages) { 
+                this.setState( {messages: json.messages} )
+            }
+        }
+    )
   }
 
   render() {

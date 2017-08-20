@@ -1,15 +1,12 @@
 const chat = require('../models/chat');
 
 exports.index = (req, res) => {
-
     chat.get( (err, rows) => {
-
         if (err) {
-            res.send({'error': true, 'message': err})          
+            res.status(500).send({'error': true, 'message': err})          
         } else {
             res.send({'messages':rows})
         }
-
     })
-    
+
 };
