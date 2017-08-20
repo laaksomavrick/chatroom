@@ -4,7 +4,9 @@
   "description": "simple chat app for learning purposes",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "node server.js",
+    "client": "node start-client.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +27,13 @@
   "dependencies": {
     "express": "^4.15.4",
     "mysql": "^2.14.1"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
   }
 }

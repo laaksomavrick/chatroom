@@ -5,7 +5,7 @@ exports.index = (req, res) => {
     chat.get( (err, rows) => {
 
         if (err) {
-            res.send({'error':err})          
+            res.send({'error': true, 'message': err})          
         } else {
             res.send({'messages':rows})
         }
