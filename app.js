@@ -1,10 +1,17 @@
 const express = require('express')
 const app = express()
+const routes = require('./server/routes')
+const database = require('./server/database')
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+app.use(routes);
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+database.connect( (err) => {
+    if (err) {
+        console.log(err)
+        process.exit(1)
+    } else {
+        app.listen(3000, () => {
+            console.log('Listening on port 3000...');
+        })
+    }
 })

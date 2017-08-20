@@ -1,0 +1,29 @@
+{
+  "name": "chatroom",
+  "version": "1.0.0",
+  "description": "simple chat app for learning purposes",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laaksomavrick/chatroom.git"
+  },
+  "keywords": [
+    "chat",
+    "chatroom",
+    "websockets",
+    "react"
+  ],
+  "author": "mavrick laakso",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/laaksomavrick/chatroom/issues"
+  },
+  "homepage": "https://github.com/laaksomavrick/chatroom#readme",
+  "dependencies": {
+    "express": "^4.15.4",
+    "mysql": "^2.14.1"
+  }
+}
