@@ -7,7 +7,7 @@ class App extends Component {
       messages: []
     }
 
-    //redux, websockets for messages, component split up, users, auth, rooms
+    //redux, component split up, websockets for messages, users, auth, rooms
 
   componentDidMount() {
       //todo: create abstraction for checking status codes + returning result in std fmt
@@ -17,8 +17,7 @@ class App extends Component {
             if (json.messages) { 
                 this.setState( {messages: json.messages} )
             }
-        }
-    )
+        })
   }
 
   render() {

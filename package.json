@@ -26,7 +26,8 @@
   "homepage": "https://github.com/laaksomavrick/chatroom#readme",
   "dependencies": {
     "express": "^4.15.4",
-    "mysql": "^2.14.1"
+    "mysql": "^2.14.1",
+    "react-redux": "^5.0.6"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
