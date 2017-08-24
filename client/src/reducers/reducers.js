@@ -35,9 +35,9 @@
  // Note: as this becomes more verbose, ought to split up into separate handlers for related sets of actions
  //       which would require same data (reducer composition)
  //       http://redux.js.org/docs/basics/Reducers.html
- function chatApp(state = initialState, action) {
+ export const chatApp = (state = initialState, action) => {
      switch(action.type) {
-        case ADD_MESSAGE:
+        case Actions.ADD_MESSAGE:
         return Object.assign({}, state, {
             messages: [
               ...state.messages,
@@ -49,5 +49,4 @@
         default:
             return state
      }
-     return state
  }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 
+
 class App extends Component {
 
   state = {
@@ -18,6 +19,7 @@ class App extends Component {
                 this.setState( {messages: json.messages} )
             }
         })
+
   }
 
   render() {

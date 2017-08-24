@@ -27,7 +27,8 @@
   "dependencies": {
     "express": "^4.15.4",
     "mysql": "^2.14.1",
-    "react-redux": "^5.0.6"
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2"
   },
   "devDependencies": {
     "concurrently": "^3.5.0",
