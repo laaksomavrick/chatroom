@@ -1,20 +1,24 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import { createStore } from 'redux';
-import { chatApp } from './reducers/reducers.js';
-import { addMessage } from './actions/actions.js'
+import React from 'react'
+import { render } from 'react-dom'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import { chatApp } from './reducers/reducers'
+import { App } from './components/App'
+
+import { addMessage } from './actions/actions'
 
 let store = createStore(chatApp)
 
-console.log(store.getState())
-store.dispatch(addMessage('testing redux!'))
-console.log(store.getState())
+store.dispatch(addMessage('Learn about actions'))
+store.dispatch(addMessage('Learn about reducers'))
+store.dispatch(addMessage('Learn about store'))
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
 
 /**
  * 
@@ -26,5 +30,20 @@ registerServiceWorker();
  * 4. redux store saves the complete state tree returned by the root reducer
  * 
  *   http://redux.js.org/docs/basics/DataFlow.html
+ * 
+ * 
+    //redux, component split up, websockets for messages, users, auth, rooms
+
+  componentDidMount() {
+      //todo: create abstraction for checking status codes + returning result in std fmt
+    fetch('/api/v1/chat')
+     .then(res => { return res.json() } )
+     .then(json => { 
+            if (json.messages) { 
+                this.setState( {messages: json.messages} )
+            }
+        })
+
+  }
  * 
  */

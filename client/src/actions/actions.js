@@ -12,11 +12,7 @@
  * action types
  */
 
-const ADD_MESSAGE = 'ADD_MESSAGE';
-
-export const Actions = {
-    ADD_MESSAGE: ADD_MESSAGE
-}
+export const ADD_MESSAGE = 'ADD_MESSAGE';
 
 /*
  * action creators
