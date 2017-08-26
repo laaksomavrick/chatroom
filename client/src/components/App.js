@@ -1,9 +1,10 @@
 import React from 'react'
-//import AddTodo from '../containers/AddTodo'
+import AddMessage from '../containers/AddMessage'
 import MessageContainer from '../containers/MessageContainer'
 
 export const App = () => (
   <div>
     <MessageContainer />
+    <AddMessage />
   </div>
 )

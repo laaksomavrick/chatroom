@@ -5,13 +5,7 @@ import { createStore } from 'redux'
 import { chatApp } from './reducers/reducers'
 import { App } from './components/App'
 
-import { addMessage } from './actions/actions'
-
 let store = createStore(chatApp)
-
-store.dispatch(addMessage('Learn about actions'))
-store.dispatch(addMessage('Learn about reducers'))
-store.dispatch(addMessage('Learn about store'))
 
 render(
   <Provider store={store}>
