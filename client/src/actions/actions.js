@@ -9,18 +9,44 @@
 */
 
 /*
- * action types
- */
-
-export const ADD_MESSAGE = 'ADD_MESSAGE';
-
-/*
  * action creators
  */
 
+export const REQUEST_MESSAGES = 'REQUEST_MESSAGES'
+export const requestMessages = () => {
+    return {
+      type: REQUEST_MESSAGES
+    }
+}
+
+export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES'
+export const receiveMessages = (json) => {
+    return {
+        type: RECEIVE_MESSAGES,
+        messages: json.messages
+    }
+}
+
+export const fetchMessages = () => {
+    return function (dispatch) {
+        dispatch(requestMessages())
+        return fetch('/api/v1/chat')
+            .then(
+                response => response.json(),
+                error => console.log('An error occured.', error)
+            )
+            .then(
+                json => dispatch(receiveMessages(json))
+            )
+    }
+
+}
+
+export const ADD_MESSAGE = 'ADD_MESSAGE';  
 export const addMessage = (message) => {
     return {
         type: ADD_MESSAGE,
         message
     }
 }
+

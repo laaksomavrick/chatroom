@@ -15,6 +15,7 @@
 *  App's data store shape
 *
  {
+    isFetching: bool,
     messages: [
         {
             id: Int
@@ -26,7 +27,9 @@
 
 import { combineReducers } from 'redux' 
 import { 
-    ADD_MESSAGE 
+    ADD_MESSAGE,
+    REQUEST_MESSAGES,
+    RECEIVE_MESSAGES
 } from '../actions/actions.js'
 
  // NEVER mutate the state, always create a copy with object.assign()
@@ -34,21 +37,39 @@ import {
  // Note: as this becomes more verbose, ought to split up into separate handlers for related sets of actions
  //       which would require same data (reducer composition)
  //       http://redux.js.org/docs/basics/Reducers.html
-const messages = (state = [], action) => {
+const chatroom = (
+    state = {
+        isFetching: false,
+        messages: []
+    }, 
+    action
+) => {
     switch(action.type) {
+        case REQUEST_MESSAGES:
+            return Object.assign({}, state, {
+            isFetching: true,
+        })
+        case RECEIVE_MESSAGES:
+            return Object.assign({}, state, {
+                isFetching: false,
+                messages: action.messages,
+            })
        case ADD_MESSAGE:
-       return [
-            ...state,
+        return Object.assign({}, state, {
+            isFetching: false,
+            messages: [
+            ...state.messages,
             {
-                message: action.message            
+                message: action.message
             }
-       ]
+            ]
+        })
        default:
            return state
     }
 }
 
 // each item here should manages one branch in the state tree
-export const chatApp = combineReducers({
-    messages
+export const rootReducer = combineReducers({
+    chatroom
 })

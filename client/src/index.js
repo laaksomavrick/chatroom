@@ -1,11 +1,26 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import { chatApp } from './reducers/reducers'
+import { createStore, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
+import { rootReducer } from './reducers/reducers'
 import { App } from './components/App'
+import { fetchMessages } from './actions/actions'
 
-let store = createStore(chatApp)
+const loggerMiddleware = createLogger()
+const store = createStore(
+    rootReducer,
+    applyMiddleware(
+      thunkMiddleware, // lets us dispatch() functions
+      loggerMiddleware // logger
+    )
+)
+
+
+store
+  .dispatch(fetchMessages())
+  .then(() => console.log(store.getState()))
 
 render(
   <Provider store={store}>
@@ -27,17 +42,5 @@ render(
  * 
  * 
     //redux, component split up, websockets for messages, users, auth, rooms
-
-  componentDidMount() {
-      //todo: create abstraction for checking status codes + returning result in std fmt
-    fetch('/api/v1/chat')
-     .then(res => { return res.json() } )
-     .then(json => { 
-            if (json.messages) { 
-                this.setState( {messages: json.messages} )
-            }
-        })
-
-  }
  * 
  */

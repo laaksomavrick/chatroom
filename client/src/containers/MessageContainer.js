@@ -7,9 +7,7 @@ import { MessageList } from '../components/MessageList'
  *  into the props you want to pass to the presentational component being wrapped
  */
 const mapStateToProps = state => {
-  return {
-    messages: state.messages
-  }
+    return state
 }
 
 /*
