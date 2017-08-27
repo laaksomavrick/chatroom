@@ -11,6 +11,7 @@ exports.get = (callback) => {
 }
 
 exports.create = (text, callback) => {
+    //todo need to sanitize input
     database.get().query(`INSERT INTO messages (message_text) VALUES ('${text}');`, (err, rows) => {
         if (err) { 
             callback(err, null)
