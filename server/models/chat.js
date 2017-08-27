@@ -9,3 +9,13 @@ exports.get = (callback) => {
         }
     })
 }
+
+exports.create = (text, callback) => {
+    database.get().query(`INSERT INTO messages (message_text) VALUES ('${text}');`, (err, rows) => {
+        if (err) { 
+            callback(err, null)
+        } else {
+            callback(null, rows)            
+        }
+    })
+}

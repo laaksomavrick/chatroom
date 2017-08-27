@@ -8,6 +8,8 @@ import { rootReducer } from './reducers/reducers'
 import { App } from './components/App'
 import { fetchMessages } from './actions/actions'
 
+// todo websockets, POST, msg ids, users, auth, rooms, styling
+
 const loggerMiddleware = createLogger()
 const store = createStore(
     rootReducer,
@@ -17,16 +19,15 @@ const store = createStore(
     )
 )
 
-
 store
-  .dispatch(fetchMessages())
-  .then(() => console.log(store.getState()))
+    .dispatch(fetchMessages())
+    .then(() => console.log(store.getState()))
 
 render(
-  <Provider store={store}>
+    <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('root')
+    </Provider>,
+    document.getElementById('root')
 )
 
 /**
@@ -39,8 +40,5 @@ render(
  * 4. redux store saves the complete state tree returned by the root reducer
  * 
  *   http://redux.js.org/docs/basics/DataFlow.html
- * 
- * 
-    //redux, component split up, websockets for messages, users, auth, rooms
  * 
  */

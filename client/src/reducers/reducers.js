@@ -16,10 +16,11 @@
 *
  {
     isFetching: bool,
+    isSending: bool,
     messages: [
         {
             id: Int
-            message: String
+            message_text: String
         }
     ]
  }
@@ -27,9 +28,10 @@
 
 import { combineReducers } from 'redux' 
 import { 
-    ADD_MESSAGE,
-    REQUEST_MESSAGES,
-    RECEIVE_MESSAGES
+    REQUEST_POST_MESSAGE,
+    RECEIVE_POST_MESSAGE,
+    REQUEST_GET_MESSAGES,
+    RECEIVE_GET_MESSAGES
 } from '../actions/actions.js'
 
  // NEVER mutate the state, always create a copy with object.assign()
@@ -45,25 +47,23 @@ const chatroom = (
     action
 ) => {
     switch(action.type) {
-        case REQUEST_MESSAGES:
+        case REQUEST_GET_MESSAGES:
             return Object.assign({}, state, {
-            isFetching: true,
-        })
-        case RECEIVE_MESSAGES:
+                isFetching: true,
+            })
+        case RECEIVE_GET_MESSAGES:
             return Object.assign({}, state, {
                 isFetching: false,
                 messages: action.messages,
             })
-       case ADD_MESSAGE:
-        return Object.assign({}, state, {
-            isFetching: false,
-            messages: [
-            ...state.messages,
-            {
-                message: action.message
-            }
-            ]
-        })
+       case REQUEST_POST_MESSAGE:
+            return Object.assign({}, state, {
+                isSending: true,
+            })
+        case RECEIVE_POST_MESSAGE:
+            return Object.assign({}, state, {
+                isSending: false,
+            })
        default:
            return state
     }
