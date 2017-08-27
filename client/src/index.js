@@ -7,9 +7,23 @@ import { createLogger } from 'redux-logger'
 import { rootReducer } from './reducers/reducers'
 import { App } from './components/App'
 import { fetchMessages } from './actions/actions'
+import io from 'socket.io-client'
 
-// todo websockets, POST, msg ids, users, auth, rooms, styling
 
+// todo websockets, users, auth, rooms, styling
+
+
+/**
+ * 
+ * On APP LOAD:
+ * 
+ *      fetch messages is fine => loads all messages to page
+ * 
+ *      I want to create a socket to to receive new messages
+ * 
+ */
+
+const socket = io('http://localhost:3001')
 const loggerMiddleware = createLogger()
 const store = createStore(
     rootReducer,
