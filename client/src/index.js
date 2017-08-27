@@ -32,6 +32,7 @@ const store = createStore(
       loggerMiddleware // logger
     )
 )
+socket.emit('event', {});
 
 store
     .dispatch(fetchMessages())

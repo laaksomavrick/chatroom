@@ -5,7 +5,8 @@ const server = require('http').Server(app)
 const io = require('socket.io')(server)
 
 
-const routes = require('./server/routes')
+const socket = require('./server/routes/socket');
+const routes = require('./server/routes/routes')
 const database = require('./server/database')
 const socketServer =require('socket.io')
 const bodyParser = require('body-parser');
@@ -26,6 +27,14 @@ database.connect( err => {
     }
 })
 
-io.on('connection', function (socket) {
-    console.log("a user connected")
-})
+io.sockets.on('connection', socket)
+
+// io.on('connection', function (socket) {
+//     console.log("a user connected")
+
+//     socket.on('event', function(data) {
+//         console.log("event")
+//         console.log(data)
+//     })
+
+// })
