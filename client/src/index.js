@@ -6,11 +6,11 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { rootReducer } from './reducers/reducers'
 import { App } from './components/App'
-import { fetchMessages } from './actions/actions'
+import { fetchMessages, listenForMessages } from './actions/actions'
 import io from 'socket.io-client'
 
 
-// todo websockets, users, auth, rooms, styling
+// todo websockets, users + auth, rooms, basic styling, expand events (typing, seen, online/offline, user joined, nicknames, private messaging)
 
 
 /**
@@ -23,7 +23,8 @@ import io from 'socket.io-client'
  * 
  */
 
-const socket = io('http://localhost:3001')
+export const socket = io('http://localhost:3001')
+
 const loggerMiddleware = createLogger()
 const store = createStore(
     rootReducer,
@@ -32,11 +33,9 @@ const store = createStore(
       loggerMiddleware // logger
     )
 )
-socket.emit('event', {});
 
-store
-    .dispatch(fetchMessages())
-    .then(() => console.log(store.getState()))
+store.dispatch(fetchMessages())
+store.dispatch(listenForMessages())
 
 render(
     <Provider store={store}>

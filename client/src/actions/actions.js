@@ -1,3 +1,5 @@
+import { socket } from '../index'
+
 /*
 *
 *   actions.js
@@ -55,41 +57,63 @@ export const RECEIVE_POST_MESSAGE = 'RECEIVE_POST_MESSAGE'
 export const receivePostMessage = (message) => {
     return {
         type: RECEIVE_POST_MESSAGE,
-        id: tempId++,        
-        message_text: message
+        message: message
     }
 }
 
 export const sendMessage = (text) => {
-
-    //todo need to abstract POST requests (utilities file?)
-
-    var myHeaders = new Headers();  
-    myHeaders.append('Content-Type', 'application/json');    
-
     return function (dispatch) {
+        console.log("here")
         dispatch(requestPostMessage(text))
-        return fetch(
-            '/api/v1/chat',
-            {
-                method: "POST",
-                headers: myHeaders,
-                mode: 'cors',
-                cache: 'default',            
-                body: JSON.stringify({
-                    text: text
-                })
-            }
-        )
-            .then(
-                response => response.json(),
-                error => console.log('An error occured.', error) //todo handle error
-            )
-            .then(
-                json => dispatch(receivePostMessage(json.message_text))
-            )
-            .then(
-                dispatch(fetchMessages())
-            )
+        socket.emit('send:message', text);
     }
 }
+
+export const listenForMessages = (message) => {
+
+    return function (dispatch) {       
+        
+        console.log("listening for messages!")        
+
+        socket.on('send:message', (data) => {
+
+            console.log("message received!")
+
+            dispatch(receivePostMessage(data))
+        })
+    }
+}
+
+// export const sendMessage = (text) => {
+
+//     //todo need to abstract POST requests (utilities file?)
+
+//     var myHeaders = new Headers();  
+//     myHeaders.append('Content-Type', 'application/json');    
+
+//     return function (dispatch) {
+//         dispatch(requestPostMessage(text))
+//         return fetch(
+//             '/api/v1/chat',
+//             {
+//                 method: "POST",
+//                 headers: myHeaders,
+//                 mode: 'cors',
+//                 cache: 'default',            
+//                 body: JSON.stringify({
+//                     text: text
+//                 })
+//             }
+//         )
+//             .then(
+//                 response => response.json(),
+//                 error => console.log('An error occured.', error) //todo handle error
+//             )
+//             .then(
+//                 json => dispatch(receivePostMessage(json.message_text))
+//             )
+//             .then(
+//                 dispatch(fetchMessages())
+//             )
+//     }
+// }

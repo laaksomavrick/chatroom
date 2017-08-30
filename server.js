@@ -1,21 +1,22 @@
+//3rd party
 const express = require('express')
 const app = express()
-
 const server = require('http').Server(app)
-const io = require('socket.io')(server)
+const bodyParser = require('body-parser');
 
+global.io = require('socket.io')(server)
 
+//local
 const socket = require('./server/routes/socket');
 const routes = require('./server/routes/routes')
 const database = require('./server/database')
-const socketServer =require('socket.io')
-const bodyParser = require('body-parser');
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 app.use('/api/v1', routes);
 
+//set up db + server
 database.connect( err => {
     if (err) {
         console.log("Database failed")
@@ -27,14 +28,5 @@ database.connect( err => {
     }
 })
 
-io.sockets.on('connection', socket)
-
-// io.on('connection', function (socket) {
-//     console.log("a user connected")
-
-//     socket.on('event', function(data) {
-//         console.log("event")
-//         console.log(data)
-//     })
-
-// })
+//set up socket connections
+io.on('connection', socket)

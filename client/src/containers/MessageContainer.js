@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { MessageList } from '../components/MessageList'
 
-
 /*
  *  mapStateToProps describes how to transform the current Redux store state 
  *  into the props you want to pass to the presentational component being wrapped

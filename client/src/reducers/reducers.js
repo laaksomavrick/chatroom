@@ -58,11 +58,14 @@ const chatroom = (
             })
        case REQUEST_POST_MESSAGE:
             return Object.assign({}, state, {
+                ...state,
                 isSending: true,
             })
         case RECEIVE_POST_MESSAGE:
             return Object.assign({}, state, {
+                ...state,
                 isSending: false,
+                messages: [...state.messages, action.message]
             })
        default:
            return state
