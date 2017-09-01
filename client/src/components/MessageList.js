@@ -1,13 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Message from './Message'
+import Loading from './Loading'
 
 export const MessageList = ({ chatroom }) => (
-    <ul>
-        { chatroom.messages.map(message => (
-            <Message key={message.id} id={message.id} message={message.message_text}/>
-        ))}
-    </ul>
+    <div>
+        <Loading isFetching={chatroom.isFetching}/>
+        <ul>
+            { chatroom.messages.map(message => (
+                <Message key={message.id} id={message.id} message={message.message_text}/>
+            ))}
+        </ul>
+    </div>
 )
 
 MessageList.PropTypes = {

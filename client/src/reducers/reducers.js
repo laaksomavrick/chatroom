@@ -33,7 +33,7 @@ import {
     REQUEST_POST_MESSAGE,
     RECEIVE_POST_MESSAGE,
     REQUEST_GET_MESSAGES,
-    RECEIVE_GET_MESSAGES
+    RESPONSE_GET_MESSAGES
 } from '../actions/actions.js'
 
  // NEVER mutate the state, always create a copy with object.assign()
@@ -53,7 +53,7 @@ const chatroom = (
             return Object.assign({}, state, {
                 isFetching: true,
             })
-        case RECEIVE_GET_MESSAGES:
+        case RESPONSE_GET_MESSAGES:
             return Object.assign({}, state, {
                 isFetching: false,
                 messages: action.messages,

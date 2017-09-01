@@ -16,30 +16,30 @@ import { socket } from '../index'
  */
 
 export const REQUEST_GET_MESSAGES = 'REQUEST_GET_MESSAGES'
-export const requestMessages = () => {
+export const requestGetMessages = () => {
     return {
       type: REQUEST_GET_MESSAGES
     }
 }
 
-export const RECEIVE_GET_MESSAGES = 'RECEIVE_GET_MESSAGES'
-export const receiveMessages = (json) => {
+export const RESPONSE_GET_MESSAGES = 'RESPONSE_GET_MESSAGES'
+export const responseGetMessages = (json) => {
     return {
-        type: RECEIVE_GET_MESSAGES,
+        type: RESPONSE_GET_MESSAGES,
         messages: json.messages
     }
 }
 
 export const fetchMessages = () => {
-    return function (dispatch) {
-        dispatch(requestMessages())
+    return dispatch => {
+        dispatch(requestGetMessages())
         return fetch('/api/v1/chat')
             .then(
                 response => response.json(),
                 error => console.log('An error occured.', error) //todo handle error
             )
             .then(
-                json => dispatch(receiveMessages(json))
+                json => dispatch(responseGetMessages(json))
             )
     }
 }
