@@ -1,26 +1,30 @@
 const chat = require('../models/chat')
 
-module.exports = (socket) => {
+module.exports = (io) => {
 
-    console.log("a user connected")
+    io.sockets.on('connection', socket => {
 
-    socket.on('send:message', (text) => {
-
-        console.log('send:message received')
-
-        chat.create(text, (err, rows) => {
-            if (err) {
-                io.sockets.emit('send:message', null)
-            } else {
-                io.sockets.emit(
-                    'send:message', 
-                    {
-                        id: rows.insertId, 
-                        message_text: text
+        console.log("a user connected")
+        
+            socket.on('send:message', (text) => {
+        
+                console.log('send:message received')
+        
+                chat.create(text, (err, rows) => {
+                    if (err) {
+                        io.sockets.emit('send:message', null)
+                    } else {
+                        io.sockets.emit(
+                            'send:message', 
+                            {
+                                id: rows.insertId, 
+                                message_text: text
+                            }
+                        )
                     }
-                )
-            }
-        })
+                })
+        
+            })
 
     })
 

@@ -3,14 +3,13 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 const bodyParser = require('body-parser');
+const io = require('socket.io')(server)
 
-global.io = require('socket.io')(server)
 
 //local
-const socket = require('./server/routes/socket');
+const socket = require('./server/routes/socket')(io)
 const routes = require('./server/routes/routes')
 const database = require('./server/database')
-
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -27,6 +26,3 @@ database.connect( err => {
         })
     }
 })
-
-//set up socket connections
-io.on('connection', socket)
