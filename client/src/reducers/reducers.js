@@ -30,8 +30,7 @@
 
 import { combineReducers } from 'redux' 
 import { 
-    REQUEST_POST_MESSAGE,
-    RECEIVE_POST_MESSAGE,
+    NEW_MESSAGE,
     REQUEST_GET_MESSAGES,
     RESPONSE_GET_MESSAGES
 } from '../actions/actions.js'
@@ -44,6 +43,7 @@ import {
 const chatroom = (
     state = {
         isFetching: false,
+        isSending: false,
         messages: []
     }, 
     action
@@ -58,16 +58,11 @@ const chatroom = (
                 isFetching: false,
                 messages: action.messages,
             })
-       case REQUEST_POST_MESSAGE:
-            return Object.assign({}, state, {
-                ...state,
-                isSending: true,
-            })
-        case RECEIVE_POST_MESSAGE:
+        case NEW_MESSAGE:
             return Object.assign({}, state, {
                 ...state,
                 isSending: false,
-                messages: [...state.messages, action.message]
+                messages: [...state.messages, action.payload]
             })
        default:
            return state

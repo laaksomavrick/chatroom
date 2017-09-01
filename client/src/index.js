@@ -6,11 +6,13 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { rootReducer } from './reducers/reducers'
 import { App } from './components/App'
-import { fetchMessages, listenForMessages } from './actions/actions'
+import { fetchMessages } from './actions/actions'
+
+import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client'
 
 
-// todo websockets, users + auth, rooms, basic styling, expand events (typing, seen, online/offline, user joined, nicknames, private messaging)
+// todo, users + auth, basic styling, expand events (typing, seen, online/offline, user joined, nicknames, private messaging, message sent/saved)
 
 
 /**
@@ -23,19 +25,20 @@ import io from 'socket.io-client'
  * 
  */
 
-export const socket = io('http://localhost:3001')
+const socket = io('http://localhost:3001')
+const socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
 
 const loggerMiddleware = createLogger()
 const store = createStore(
     rootReducer,
     applyMiddleware(
       thunkMiddleware, // lets us dispatch() functions
-      loggerMiddleware // logger
+      loggerMiddleware, // logger
+      socketIoMiddleware // socket middleware
     )
 )
 
 store.dispatch(fetchMessages())
-store.dispatch(listenForMessages())
 
 render(
     <Provider store={store}>

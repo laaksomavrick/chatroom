@@ -1,5 +1,3 @@
-import { socket } from '../index'
-
 /**
 *
 *   actions.js
@@ -44,44 +42,11 @@ export const fetchMessages = () => {
     }
 }
 
-let tempId = 0
-export const REQUEST_POST_MESSAGE = 'REQUEST_POST_MESSAGE'
-export const requestPostMessage = (message) => {
-    return {
-        type: REQUEST_POST_MESSAGE,
-        id: tempId++,        
-        message_text: message
-    }
-}
-
-export const RECEIVE_POST_MESSAGE = 'RECEIVE_POST_MESSAGE'
-export const receivePostMessage = (message) => {
-    return {
-        type: RECEIVE_POST_MESSAGE,
-        message: message
-    }
-}
-
+export const NEW_MESSAGE = 'NEW_MESSAGE'
 export const sendMessage = (text) => {
-    return function (dispatch) {
-        console.log("here")
-        dispatch(requestPostMessage(text))
-        socket.emit('send:message', text);
-    }
-}
-
-export const listenForMessages = (message) => {
-
-    return function (dispatch) {       
-        
-        console.log("listening for messages!")        
-
-        socket.on('send:message', (data) => {
-
-            console.log("message received!")
-
-            dispatch(receivePostMessage(data))
-        })
+    return {
+        type: `server/${NEW_MESSAGE}`, //todo move to common
+        payload: {message_text: text}
     }
 }
 
