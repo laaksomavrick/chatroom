@@ -57,37 +57,3 @@ export const serverSendMessage = (username, message) => {
         payload: {username, message}
     }
 }
-
-// export const sendMessage = (text) => {
-
-//     //todo need to abstract POST requests (utilities file?)
-
-//     var myHeaders = new Headers();  
-//     myHeaders.append('Content-Type', 'application/json');    
-
-//     return function (dispatch) {
-//         dispatch(requestPostMessage(text))
-//         return fetch(
-//             '/api/v1/chat',
-//             {
-//                 method: "POST",
-//                 headers: myHeaders,
-//                 mode: 'cors',
-//                 cache: 'default',            
-//                 body: JSON.stringify({
-//                     text: text
-//                 })
-//             }
-//         )
-//             .then(
-//                 response => response.json(),
-//                 error => console.log('An error occured.', error) //todo handle error
-//             )
-//             .then(
-//                 json => dispatch(receivePostMessage(json.message_text))
-//             )
-//             .then(
-//                 dispatch(fetchMessages())
-//             )
-//     }
-// }

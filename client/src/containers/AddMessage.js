@@ -30,7 +30,6 @@ let AddMessage = ({ dispatch }) => {
                 }}
             >
 
-            
                 <input
                     defaultValue="Anonymous"
                     ref={node => {

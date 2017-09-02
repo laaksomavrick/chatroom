@@ -11,20 +11,20 @@ import { fetchMessages } from './actions/actions'
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client'
 
-
-// todo, users + auth, basic styling, expand events (typing, seen, online/offline, user joined, nicknames, private messaging, message sent/saved)
-
-
 /**
- * 
- * On APP LOAD:
- * 
- *      fetch messages is fine => loads all messages to page
- * 
- *      I want to create a socket to to receive new messages
- * 
+ * todo
+ * auth
+ * basic styling
+ * clean up code (routing, standard models in common, remove todos)
+ * expand events 
+ *      (typing, 
+ *       seen, 
+ *       online/offline, 
+ *       user joined, 
+ *       nicknames, 
+ *       private messaging, 
+ *       message sent/saved)
  */
-
 const socket = io('http://localhost:3001')
 const socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
 
