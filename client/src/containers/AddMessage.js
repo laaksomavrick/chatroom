@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { sendMessage } from '../actions/actions'
+import { localSendMessage, serverSendMessage } from '../actions/actions'
 
 let AddMessage = ({ dispatch }) => {
   let input
@@ -13,7 +13,8 @@ let AddMessage = ({ dispatch }) => {
           if (!input.value.trim()) {
             return
           }
-          dispatch(sendMessage(input.value))
+          dispatch(localSendMessage(input.value))
+          dispatch(serverSendMessage(input.value))
           input.value = ''
         }}
       >

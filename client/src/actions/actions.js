@@ -42,8 +42,30 @@ export const fetchMessages = () => {
     }
 }
 
+//update local state first
+//send message to server
+//on complete, broadcast to the rest of clients to update
+
+    //update local state step + on complete step => same action, affect state the same way
+
+
 export const NEW_MESSAGE = 'NEW_MESSAGE'
+
 export const sendMessage = (text) => {
+    return dispatch => {
+        dispatch(localSendMessage)
+        dispatch(serverSendMessage)
+    }
+}
+
+export const localSendMessage = (text) => {
+    return {
+        type: NEW_MESSAGE, //todo move to common
+        payload: {message_text: text}
+    }
+}
+
+export const serverSendMessage = (text) => {
     return {
         type: `server/${NEW_MESSAGE}`, //todo move to common
         payload: {message_text: text}
