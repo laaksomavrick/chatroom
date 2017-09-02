@@ -5,13 +5,8 @@
 *   Actions are payloads of information that send data from your application to your 
 *   store. They are the only source of information 
 *   for the store.
-*   Note to self: think of actions as "emitted events"
 *
 */
-
-/*
- * action creators
- */
 
 export const REQUEST_GET_MESSAGES = 'REQUEST_GET_MESSAGES'
 export const requestGetMessages = () => {
@@ -43,14 +38,12 @@ export const fetchMessages = () => {
 }
 
 export const NEW_MESSAGE = 'NEW_MESSAGE'
-
 export const localSendMessage = (username, message) => {
     return {
         type: NEW_MESSAGE, //todo move to common
         payload: {username, message}
     }
 }
-
 export const serverSendMessage = (username, message) => {
     return {
         type: `server/${NEW_MESSAGE}`, //todo move to common

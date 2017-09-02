@@ -8,7 +8,6 @@
 *
 *   (previousState, action) => newState
 *
-*   Note to self: think of reducers as handlers for events => modify state
 *
 */
 
@@ -18,7 +17,6 @@
 *
  {
     isFetching: bool,
-    isSending: bool,
     messages: [
         {
             id: Int
@@ -43,7 +41,6 @@ import {
 const chatroom = (
     state = {
         isFetching: false,
-        isSending: false,
         messages: []
     }, 
     action
@@ -61,7 +58,6 @@ const chatroom = (
         case NEW_MESSAGE:
             return Object.assign({}, state, {
                 ...state,
-                isSending: false,
                 messages: [...state.messages, action.payload]
             })
        default:
