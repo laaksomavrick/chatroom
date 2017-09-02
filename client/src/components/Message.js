@@ -1,14 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-const Message = ({ id, message }) => (
+const Message = ({ username, message }) => (
     <li>
-        {id} {message}
+        {username}: {message}
     </li>
 )
 
 Message.PropTypes = {
-    id: PropTypes.number.isRequired,
+    username: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired
 }
 

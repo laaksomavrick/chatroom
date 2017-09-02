@@ -8,7 +8,7 @@
 *
 *   (previousState, action) => newState
 *
-*   Note to self: think of reducers as handlers for events
+*   Note to self: think of reducers as handlers for events => modify state
 *
 */
 
@@ -22,7 +22,7 @@
     messages: [
         {
             id: Int
-            message_text: String
+            message: String
         }
     ]
  }

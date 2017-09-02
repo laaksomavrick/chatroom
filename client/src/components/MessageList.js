@@ -7,8 +7,8 @@ export const MessageList = ({ chatroom }) => (
     <div>
         <Loading isFetching={chatroom.isFetching}/>
         <ul>
-            { chatroom.messages.map((message, index) => (
-                <Message key={index} id={message.id} message={message.message_text}/>
+            { chatroom.messages.map((data, index) => (
+                <Message key={index} username={data.username} message={data.message}/>
             ))}
         </ul>
     </div>

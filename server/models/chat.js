@@ -10,9 +10,9 @@ exports.get = (callback) => {
     })
 }
 
-exports.create = (text, callback) => {
+exports.create = (payload, callback) => {
     //todo need to sanitize input
-    database.get().query(`INSERT INTO messages (message_text) VALUES ('${text}');`, (err, rows) => {
+    database.get().query(`INSERT INTO messages (username, message) VALUES ('${payload.username}','${payload.message}');`, (err, rows) => {
         if (err) { 
             callback(err, null)
         } else {

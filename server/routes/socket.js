@@ -15,7 +15,7 @@ module.exports = (io) => {
 
                     console.log("here1");
 
-                    chat.create(event.payload.message_text, (err, rows) => {
+                    chat.create(event.payload, (err, rows) => {
                         if (err) {
                             console.log("here2");                            
                             //emit('send:message', null) //todo error emit
@@ -25,13 +25,12 @@ module.exports = (io) => {
                                     "NEW_MESSAGE",  //todo isSaved flag?
                                     {
                                         id: rows.insertId, 
-                                        message_text: event.payload.message_text
+                                        message: event.payload.message,
+                                        username: event.payload.username
                                     }
                                 )
                             }
 
-                            
-                        }
                     })
 
                     break
