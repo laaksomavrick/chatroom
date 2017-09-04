@@ -11,21 +11,6 @@
 *
 */
 
-/*
-*
-*  App's data store shape
-*
- {
-    isFetching: bool,
-    messages: [
-        {
-            id: Int
-            message: String
-        }
-    ]
- }
- */
-
 import { combineReducers } from 'redux' 
 import { 
     NEW_MESSAGE,
@@ -38,8 +23,11 @@ import {
  // Note: as this becomes more verbose, ought to split up into separate handlers for related sets of actions
  //       which would require same data (reducer composition)
  //       http://redux.js.org/docs/basics/Reducers.html
+ 
 const chatroom = (
     state = {
+        id: 1,
+        name: "Welcome Lobby",
         isFetching: false,
         messages: []
     }, 
@@ -52,8 +40,10 @@ const chatroom = (
             })
         case RESPONSE_GET_MESSAGES:
             return Object.assign({}, state, {
+                id: action.payload.room.id,
+                name: action.payload.room.name,
                 isFetching: false,
-                messages: action.messages,
+                messages: action.payload.room.messages,
             })
         case NEW_MESSAGE:
             return Object.assign({}, state, {

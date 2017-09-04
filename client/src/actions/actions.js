@@ -8,6 +8,8 @@
 *
 */
 
+import { store } from '../index'
+
 export const REQUEST_GET_MESSAGES = 'REQUEST_GET_MESSAGES'
 export const requestGetMessages = () => {
     return {
@@ -19,14 +21,14 @@ export const RESPONSE_GET_MESSAGES = 'RESPONSE_GET_MESSAGES'
 export const responseGetMessages = (json) => {
     return {
         type: RESPONSE_GET_MESSAGES,
-        messages: json.messages
+        payload: json
     }
 }
 
-export const fetchMessages = () => {
+export const getRoomData = (room = 1) => {
     return dispatch => {
         dispatch(requestGetMessages())
-        return fetch('/api/v1/chat')
+        return fetch(`/api/v1/room/${room}`)
             .then(
                 response => response.json(),
                 error => console.log('An error occured.', error) //todo handle error
@@ -45,8 +47,11 @@ export const localSendMessage = (username, message) => {
     }
 }
 export const serverSendMessage = (username, message) => {
+
+    const roomId = store.getState().chatroom.id
+    
     return {
         type: `server/${NEW_MESSAGE}`, //todo move to common
-        payload: {username, message}
+        payload: {username, message, roomId}
     }
 }

@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { rootReducer } from './reducers/reducers'
 import { App } from './components/App'
-import { fetchMessages } from './actions/actions'
+import { getRoomData } from './actions/actions'
 
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client'
@@ -26,11 +26,23 @@ import io from 'socket.io-client'
  *       message sent/saved)
  */
 
+ /**
+  * 
+  *    Channels
+  *
+  *    On load, load the default lobby.
+  *    On new channel selection, load those messages
+  *
+  *    All messages occur in a room. Create a socket room for ea active channel. Users can tab in many chats?
+  * 
+  */
+
 const socket = io('http://localhost:3001')
-const socketIoMiddleware = createSocketIoMiddleware(socket, "server/");
+const socketIoMiddleware = createSocketIoMiddleware(socket, "server/")
 
 const loggerMiddleware = createLogger()
-const store = createStore(
+
+export const store = createStore(
     rootReducer,
     applyMiddleware(
       thunkMiddleware, // lets us dispatch() functions
@@ -39,7 +51,7 @@ const store = createStore(
     )
 )
 
-store.dispatch(fetchMessages())
+store.dispatch(getRoomData())
 
 render(
     <Provider store={store}>

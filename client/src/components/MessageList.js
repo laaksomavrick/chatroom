@@ -5,6 +5,7 @@ import Loading from './Loading'
 
 export const MessageList = ({ chatroom }) => (
     <div>
+        <h1>{chatroom.name}</h1>
         <Loading isFetching={chatroom.isFetching}/>
         <ul>
             { chatroom.messages.map((data, index) => (
