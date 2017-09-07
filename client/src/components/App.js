@@ -1,10 +1,10 @@
 import React from 'react'
 import AddMessage from '../containers/AddMessage'
-import MessageContainer from '../containers/MessageContainer'
+import ChatroomContainer from '../containers/ChatroomContainer'
 
 export const App = () => (
   <div>
-    <MessageContainer />
+    <ChatroomContainer />
     <AddMessage />
   </div>
 )

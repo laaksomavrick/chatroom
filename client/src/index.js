@@ -6,7 +6,6 @@ import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import { rootReducer } from './reducers/reducers'
 import { App } from './components/App'
-import { getRoomData } from './actions/actions'
 
 import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client'
@@ -50,8 +49,6 @@ export const store = createStore(
       socketIoMiddleware // socket middleware
     )
 )
-
-store.dispatch(getRoomData())
 
 render(
     <Provider store={store}>

@@ -1,5 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import Message from './Message'
 import Loading from './Loading'
 
@@ -15,12 +14,4 @@ export const MessageList = ({ chatroom }) => (
     </div>
 )
 
-MessageList.PropTypes = {
-    isFetching: PropTypes.bool.isRequired,
-    messages: PropTypes.arrayOf(
-        PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            message: PropTypes.string.isRequired
-        }).isRequired
-    ).isRequired
-}
+//todo propTypes
