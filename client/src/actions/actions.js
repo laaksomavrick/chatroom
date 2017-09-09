@@ -39,6 +39,35 @@ export const getRoomData = (room = 1) => {
     }
 }
 
+export const REQUEST_GET_ROOMS = 'REQUEST_GET_ROOMS'
+export const requestGetRooms = () => {
+    return {
+        type: REQUEST_GET_ROOMS
+    }
+}
+
+export const RESPONSE_GET_ROOMS = 'RESPONSE_GET_ROOMS'
+export const responseGetRooms = (json) => {
+    return {
+        type: RESPONSE_GET_ROOMS,
+        payload: json
+    }
+}
+
+export const getRoomListData = () => {
+    return dispatch => {
+        dispatch(requestGetRooms())
+        return fetch(`/api/v1/rooms`)
+            .then(
+                response => response.json(),
+                error => console.log('An error occured.', error) //todo handle error
+            )
+            .then(
+                json => dispatch(responseGetRooms(json))
+            )
+    }
+}
+
 export const NEW_MESSAGE = 'NEW_MESSAGE'
 export const localSendMessage = (username, message) => {
     return {

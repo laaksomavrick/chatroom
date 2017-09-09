@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { RoomList } from '../components/RoomList'
+import { getRoomListData } from '../actions/actions'
 
 class RoomListContainer extends Component {
 
@@ -10,19 +11,20 @@ class RoomListContainer extends Component {
 
     componentDidMount() {
         const { dispatch } = this.props
+        dispatch(getRoomListData())        
     }
 
     render() {
-        const temp = [
-            {name: "test room 1"},
-            {name: "test room 2"},
-            {name: "test room 3"}
-        ]
+        const roomList = this.props
         return (
-            <RoomList rooms={temp}/>
+            <RoomList roomList={roomList}/>
         )
     }
 
 }
 
-export default RoomListContainer
+const mapStateToProps = state => { //will have to change to the current selected room
+    return state.roomList
+}
+
+export default connect(mapStateToProps)(RoomListContainer)

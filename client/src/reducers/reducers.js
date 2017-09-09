@@ -15,16 +15,44 @@ import { combineReducers } from 'redux'
 import { 
     NEW_MESSAGE,
     REQUEST_GET_MESSAGES,
-    RESPONSE_GET_MESSAGES
+    RESPONSE_GET_MESSAGES,
+    REQUEST_GET_ROOMS,
+    RESPONSE_GET_ROOMS
 } from '../actions/actions.js'
 
- // NEVER mutate the state, always create a copy with object.assign()
- // ALWAYS return the previous state for any unknown action
- // Note: as this becomes more verbose, ought to split up into separate handlers for related sets of actions
- //       which would require same data (reducer composition)
- //       http://redux.js.org/docs/basics/Reducers.html
+/**
+ * 
+ * {
+ *  selectedChatRoom: chatroom,
+ *  roomList: roomList
+ *
+ * }
+ * 
+ */
+
+const roomList = (
+    state = {
+        isFetching: false,
+        rooms: []
+    }, 
+    action
+) => {
+    switch(action.type) {
+        case REQUEST_GET_ROOMS:
+            return Object.assign({}, state, {
+                isFetching: true
+            })
+        case RESPONSE_GET_ROOMS:
+            return Object.assign({}, state, {
+                isFetching: false,
+                rooms: action.payload.rooms
+            })
+        default:
+            return state
+    }
+}
  
-const chatroom = (
+const selectedChatRoom = (
     state = {
         id: 1,
         name: "Welcome Lobby",
@@ -57,5 +85,6 @@ const chatroom = (
 
 // each item here should manages one branch in the state tree
 export const rootReducer = combineReducers({
-    chatroom
+    selectedChatRoom,
+    roomList
 })

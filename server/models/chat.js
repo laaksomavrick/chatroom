@@ -36,6 +36,17 @@ exports.get = (id, callback) => {
     })
 }
 
+exports.getAll = (callback) => {
+    //todo need to sanitize input
+    database.get().query('select * from rooms', (err, rows) => {
+        if (err) { 
+            callback(err, null)
+        } else {
+            callback(null, rows)            
+        }
+    })
+}
+
 exports.create = (payload, callback) => {
     //todo need to sanitize input
     database.get().query(`INSERT INTO messages (username, message, room_id) VALUES ('${payload.username}','${payload.message}', '${payload.roomId}');`, (err, rows) => {

@@ -8,7 +8,6 @@ class ChatroomContainer extends Component {
 
     constructor(props) {
         super(props)
-        console.log(props)
     }
 
     componentDidMount() {
@@ -16,14 +15,10 @@ class ChatroomContainer extends Component {
         dispatch(getRoomData())
     }
 
-    // componentDidUpdate(prevProps) {
-
-    // }
-
     render() {
-        const { chatroom } = this.props
+        const { selectedChatRoom } = this.props
         return (
-            <MessageList chatroom={chatroom}/>            
+            <MessageList selectedChatRoom={selectedChatRoom}/>            
         )
     }
 
@@ -35,7 +30,9 @@ class ChatroomContainer extends Component {
  *  into the props you want to pass to the component being wrapped
  */
 const mapStateToProps = state => { //will have to change to the current selected room
-    return state
+    return {
+        selectedChatRoom: state.selectedChatRoom
+    }
 }
 
 export default connect(mapStateToProps)(ChatroomContainer)

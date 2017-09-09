@@ -1,11 +1,13 @@
 import React from 'react'
 import RoomListItem from './RoomListItem'
+import Loading from './Loading'
 
-export const RoomList = ({ rooms }) => (
+export const RoomList = ({ roomList }) => (
     <div className="roomList">
+        <Loading isFetching={roomList.isFetching}/>
         <ul>
             {
-                rooms.map((data, index) => (
+                roomList.rooms.map((data, index) => (
                     <RoomListItem key={index} name={data.name}/>
                 ))
             }

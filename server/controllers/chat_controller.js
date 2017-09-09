@@ -10,3 +10,13 @@ exports.index = (req, res) => {
         }
     })
 }
+
+exports.list = (req, res) => {
+    chat.getAll( (err, data) => {
+        if (err) {
+            res.status(500).send({'error': true, 'message': err})          
+        } else {
+            res.send({'rooms': data})
+        }
+    })
+}
