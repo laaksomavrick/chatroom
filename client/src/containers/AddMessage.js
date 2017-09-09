@@ -8,7 +8,7 @@ let AddMessage = ({ dispatch }) => {
     let username
 
     return (
-        <div>
+        <div className="addMessage">
             <form
                 onSubmit={e => {
 

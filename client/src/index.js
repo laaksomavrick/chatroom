@@ -1,3 +1,4 @@
+import './styles/App.css';
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
@@ -24,17 +25,6 @@ import io from 'socket.io-client'
  *       private messaging, 
  *       message sent/saved)
  */
-
- /**
-  * 
-  *    Channels
-  *
-  *    On load, load the default lobby.
-  *    On new channel selection, load those messages
-  *
-  *    All messages occur in a room. Create a socket room for ea active channel. Users can tab in many chats?
-  * 
-  */
 
 const socket = io('http://localhost:3001')
 const socketIoMiddleware = createSocketIoMiddleware(socket, "server/")

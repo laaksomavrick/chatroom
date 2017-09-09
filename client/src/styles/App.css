@@ -1,0 +1,78 @@
+html {
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    height: 100vh;
+    margin: 0px;
+    display: flex;  
+    box-sizing: border-box;
+    background: red;
+}
+
+.chatContainer {
+    height: 100vh; 
+    flex-grow: 1;
+}
+
+.roomList {
+    height: 100vh;    
+    margin: 0;
+    color: white;
+    background: #337ab7;
+    width: 15rem;
+  -ms-flex: 0 1rem;
+  -webkit-box-flex:  0;
+  -moz-box-flex:  0;
+  -ms-box-flex:  0;
+  box-flex:  0;
+  display: flex;
+  justify-content: flex-start;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.messageList {
+    height: 90vh;        
+    margin: 0;
+    background: #F5F8FF;
+   -ms-flex: 1;
+   -webkit-box-flex: 1;
+   -moz-box-flex: 1;
+   -ms-box-flex: 1;
+   box-flex: 1;
+   display: flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-content: flex-start;
+   order: 1;
+   flex-shrink: 0;
+}
+
+.addMessage {
+    height: 10vh;            
+    background: yellowgreen;
+    display: flex;
+    order: 2;
+    width: 100%;
+}

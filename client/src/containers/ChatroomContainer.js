@@ -8,6 +8,7 @@ class ChatroomContainer extends Component {
 
     constructor(props) {
         super(props)
+        console.log(props)
     }
 
     componentDidMount() {
@@ -31,7 +32,7 @@ class ChatroomContainer extends Component {
 
 /*
  *  mapStateToProps describes how to transform the current Redux store state 
- *  into the props you want to pass to the presentational component being wrapped
+ *  into the props you want to pass to the component being wrapped
  */
 const mapStateToProps = state => { //will have to change to the current selected room
     return state
