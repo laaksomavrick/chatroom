@@ -77,10 +77,19 @@ export const localSendMessage = (username, message) => {
 }
 export const serverSendMessage = (username, message) => {
 
-    const roomId = store.getState().chatroom.id
+    const roomId = store.getState().selectedChatRoom.id
     
     return {
         type: `server/${NEW_MESSAGE}`, //todo move to common
         payload: {username, message, roomId}
     }
 }
+
+export const SUBSCRIBE_TO_ROOM = 'SUBSCRIBE_TO_ROOM'
+export const subscribeToRoom = (roomId = 1) => {
+    return {
+        type: `server/${SUBSCRIBE_TO_ROOM}`, //todo move to common
+        payload: {roomId}
+    }
+}
+

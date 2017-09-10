@@ -6,7 +6,6 @@ export const MessageList = ({ selectedChatRoom }) => (
 
     <div className="messageList">
         <h1>{selectedChatRoom.name}</h1>
-        <Loading isFetching={selectedChatRoom.isFetching}/>
         <ul>
             { 
                 selectedChatRoom.messages.map((data, index) => (
