@@ -1,11 +1,12 @@
 html {
     min-height: 100%;
-    padding: 0;
-    margin: 0;
+    height: 100%;
+    width:100%;
+    overflow: hidden;
 }
 
 body {
-    height: 100vh;
+    height: 100%;
 }
 
 
@@ -18,11 +19,9 @@ ul {
 }
 
 .container {
-    height: 100vh;
-    margin: 0px;
+    height: 100%;
     display: flex;  
     box-sizing: border-box;
-    background: red;
 }
 
 .chatContainer {
@@ -52,10 +51,10 @@ ul {
   flex-direction: column;
 }
 
-.messageList {
+.messageContainer {
     height: 90vh;        
     margin: 0;
-    background: #F5F8FF;
+    background: rgba(245, 248, 255, 0.40);
    -ms-flex: 1;
    -webkit-box-flex: 1;
    -moz-box-flex: 1;
@@ -67,7 +66,39 @@ ul {
    align-content: flex-start;
    order: 1;
    flex-shrink: 0;
+   
 }
+
+.messageListContainer {
+    overflow-y: scroll;    
+    overflow-x: hidden; 
+    height: 100%;
+}
+
+.messageListContainer::-webkit-scrollbar * {
+    width: 10px;
+    background-color: rgba(0,0,0,0);
+}
+
+.messageListContainer::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+}
+
+.messageList {
+    padding: 0;
+    list-style-type: none;
+}
+
+.message {
+    width: 100%;
+    padding: 5px 0px 5px 5px;
+}
+
+.message:hover {
+    background: rgb(245, 248, 255);
+}
+    
 
 .addMessage {
     height: 10vh;            

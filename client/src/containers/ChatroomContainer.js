@@ -11,7 +11,6 @@ class ChatroomContainer extends Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         const { dispatch } = this.props
         dispatch(subscribeToRoom())
         dispatch(getRoomData())
