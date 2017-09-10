@@ -3,9 +3,6 @@ import RoomListItem from './RoomListItem'
 import Loading from './Loading'
 
 export const RoomList = ({ roomList }) =>  {
-
-    console.log("here")
-    console.log(roomList)
     
     return (
         <div className="roomList">

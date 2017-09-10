@@ -10,13 +10,8 @@ class RoomListContainer extends Component {
     }
 
     componentDidMount() {
-        const { onLoad, onRoomListItemClick } = this.props
+        const { onLoad } = this.props
         onLoad()     
-    }
-
-    handleRoomSelection(id) {
-        console.log("yep!")
-        console.log(id)
     }
 
     render() {
