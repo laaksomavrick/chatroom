@@ -1,15 +1,17 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Form, FormGroup, FormControl } from 'react-bootstrap'
 import { localSendMessage, serverSendMessage } from '../actions/actions'
 
 let AddMessage = ({ dispatch }) => {
 
     let message
-    let username
+    let username = 'Anonymous'
 
     return (
         <div className="addMessage">
-            <form
+            <Form
+                style={{'width': '100%'}}
                 onSubmit={e => {
 
                     e.preventDefault()
@@ -18,33 +20,22 @@ let AddMessage = ({ dispatch }) => {
                         return
                     }
 
-                    if (!username.value.trim()) {
-                        username = 'Anonymous'
-                    }
-
-                    dispatch(localSendMessage(username.value, message.value))
-                    dispatch(serverSendMessage(username.value, message.value))
+                    dispatch(localSendMessage(username, message.value))
+                    dispatch(serverSendMessage(username, message.value))
 
                     message.value = ''
 
                 }}
             >
-
-                <input
-                    defaultValue="Anonymous"
-                    ref={node => {
-                        username = node
-                    }}
-                    />
-                <input
-                    ref={node => {
+                <FormControl
+                    style={{'width': '100%', 'height': '64px', 'margin-top': '5px'}} 
+                    type="text"
+                    placeholder="Add a message!"
+                    inputRef={node => {
                         message = node
                     }}
                 />
-                <button type="submit">
-                    Send Message
-                </button>
-            </form>
+            </Form>
         </div>
     )
 }

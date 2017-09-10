@@ -12,18 +12,11 @@ import createSocketIoMiddleware from 'redux-socket.io';
 import io from 'socket.io-client'
 
 /**
- * todo
- * auth
- * basic styling
- * clean up code (routing, standard models in common for app state + routing consts, remove todos)
- * expand events 
- *      (typing, 
- *       seen, 
- *       online/offline, 
- *       user joined, 
- *       nicknames, 
- *       private messaging, 
- *       message sent/saved)
+ * 
+ * Styling (message table view scroll, font, rooms, input) + Usability
+ * Room creation
+ * Auth + setting names
+ * Upload to DigitalOcean
  */
 
 const socket = io('http://localhost:3001')

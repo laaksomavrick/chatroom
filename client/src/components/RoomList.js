@@ -5,9 +5,9 @@ import Loading from './Loading'
 export const RoomList = ({ roomList }) =>  {
     
     return (
-        <div className="roomList">
+        <div className="roomListContainer">
             <Loading isFetching={roomList.isFetching}/>
-            <ul>
+            <ul className="roomList">
                 {
                     roomList.rooms.map((data, index) => (
                         <RoomListItem key={index} name={data.name} onClick={() => roomList.onRoomListItemClick(data.id)}/>

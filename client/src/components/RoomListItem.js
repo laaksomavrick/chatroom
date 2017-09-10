@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const RoomListItem = ({ name, onClick }) => (
-    <li onClick={onClick}>
+    <li className="room" onClick={onClick}>
         {name}
     </li>
 )

@@ -29,6 +29,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "mysql": "^2.14.1",
+    "react-bootstrap": "^0.31.3",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",

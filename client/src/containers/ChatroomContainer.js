@@ -19,7 +19,7 @@ class ChatroomContainer extends Component {
     render() {
         const { selectedChatRoom } = this.props
         return (
-            <MessageList selectedChatRoom={selectedChatRoom}/>            
+            <MessageList selectedChatRoom={selectedChatRoom}/>
         )
     }
 
