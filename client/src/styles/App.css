@@ -46,6 +46,7 @@ ul {
 }
 
 .roomList {
+    height: 90vh; 
     padding: 0;
     list-style-type: none;
 }
@@ -95,7 +96,7 @@ ul {
 }
 
 .message:hover {
-    background: rgb(225, 228, 235)
+    background: rgb(245, 248, 255)
 }
     
 .addMessage {

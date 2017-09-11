@@ -83,8 +83,22 @@ const selectedChatRoom = (
     }
 }
 
+const user = (
+    state = {
+        username: 'Anonymous',
+        authenticated: false
+    }, 
+    action
+) => {
+    switch(action.type) {
+        default:
+            return state
+    }
+}
+
 // each item here should manages one branch in the state tree
 export const rootReducer = combineReducers({
     selectedChatRoom,
-    roomList
+    roomList,
+    user
 })

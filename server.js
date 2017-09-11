@@ -5,7 +5,6 @@ const server = require('http').Server(app)
 const bodyParser = require('body-parser');
 const io = require('socket.io')(server)
 
-
 //local
 const socket = require('./server/routes/socket')(io)
 const routes = require('./server/routes/routes')

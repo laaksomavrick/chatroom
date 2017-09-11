@@ -6,7 +6,7 @@ export const MessageList = ({ selectedChatRoom }) => {
     
     return (
         <div className="messageContainer">
-            <h1>{selectedChatRoom.name}</h1>
+            <h1 style={{'padding-left': '10px'}}>{selectedChatRoom.name}</h1>
             <div className="messageListContainer">
                 <ul className="messageList">
                     { 

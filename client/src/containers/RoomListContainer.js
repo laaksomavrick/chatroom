@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { RoomList } from '../components/RoomList'
+import AuthStateButton from '../containers/AuthStateButton'
 import { getRoomListData, getRoomData, subscribeToRoom } from '../actions/actions'
 
 class RoomListContainer extends Component {
@@ -15,16 +16,24 @@ class RoomListContainer extends Component {
     }
 
     render() {
-        const roomList = this.props
+        const roomList = this.props.roomList
+        const onRoomListItemClick = this.props.onRoomListItemClick
+        const user = this.props.user
         return (
-            <RoomList roomList={roomList}/>
+            <div className="roomListContainer">
+                <RoomList roomList={roomList} onRoomListItemClick={onRoomListItemClick}/>
+                <AuthStateButton user={user}/>
+            </div>
         )
     }
 
 }
 
 const mapStateToProps = state => {
-    return state.roomList
+    return {
+        roomList: state.roomList,
+        user: state.user
+    }
 }
 
 const mapDispatchToProps = dispatch => {
