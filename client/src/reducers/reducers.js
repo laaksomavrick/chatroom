@@ -14,6 +14,7 @@
 import { combineReducers } from 'redux' 
 import { 
     NEW_MESSAGE,
+    NEW_ROOM,
     REQUEST_GET_MESSAGES,
     RESPONSE_GET_MESSAGES,
     REQUEST_GET_ROOMS,
@@ -46,6 +47,11 @@ const roomList = (
             return Object.assign({}, state, {
                 isFetching: false,
                 rooms: action.payload.rooms
+            })
+        case NEW_ROOM:
+            return Object.assign({}, state, {
+                ...state,
+                rooms: [...state.rooms, action.payload]
             })
         default:
             return state

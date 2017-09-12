@@ -39,6 +39,17 @@ export const getRoomData = (room = 1) => {
     }
 }
 
+export const NEW_ROOM = 'NEW_ROOM'
+export const serverAddRoom = (roomName) => {
+    
+        const roomId = store.getState().selectedChatRoom.id
+        
+        return {
+            type: `server/${NEW_ROOM}`, //todo move to common
+            payload: {roomName}
+        }
+}
+
 export const REQUEST_GET_ROOMS = 'REQUEST_GET_ROOMS'
 export const requestGetRooms = () => {
     return {
