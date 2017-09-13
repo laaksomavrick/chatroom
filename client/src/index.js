@@ -14,8 +14,8 @@ import io from 'socket.io-client'
 /**
  * 
  * Styling (message table view scroll, font, rooms, input)
- * Room creation
  * Auth + setting names
+ * SQL script
  * Upload to DigitalOcean
  */
 

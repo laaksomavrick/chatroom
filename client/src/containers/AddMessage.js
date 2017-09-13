@@ -6,7 +6,6 @@ import { localSendMessage, serverSendMessage } from '../actions/actions'
 let AddMessage = ({ dispatch }) => {
 
     let message
-    let username = 'Anonymous'
 
     return (
         <div className="addMessage">
@@ -20,8 +19,8 @@ let AddMessage = ({ dispatch }) => {
                         return
                     }
 
-                    dispatch(localSendMessage(username, message.value))
-                    dispatch(serverSendMessage(username, message.value))
+                    dispatch(localSendMessage(message.value))
+                    dispatch(serverSendMessage(message.value))
 
                     message.value = ''
 

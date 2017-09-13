@@ -15,6 +15,7 @@ import { combineReducers } from 'redux'
 import { 
     NEW_MESSAGE,
     NEW_ROOM,
+    NEW_USERNAME,
     REQUEST_GET_MESSAGES,
     RESPONSE_GET_MESSAGES,
     REQUEST_GET_ROOMS,
@@ -25,7 +26,8 @@ import {
  * 
  * {
  *  selectedChatRoom: chatroom,
- *  roomList: roomList
+ *  roomList: roomList,
+ *  user: user
  *
  * }
  * 
@@ -91,12 +93,15 @@ const selectedChatRoom = (
 
 const user = (
     state = {
-        username: 'Anonymous',
-        authenticated: false
+        username: 'Anonymous'
     }, 
     action
 ) => {
     switch(action.type) {
+        case NEW_USERNAME:
+        return Object.assign({}, state, {
+            username: action.payload.username
+        })
         default:
             return state
     }

@@ -31,7 +31,7 @@ export const getRoomData = (room = 1) => {
         return fetch(`/api/v1/room/${room}`)
             .then(
                 response => response.json(),
-                error => console.log('An error occured.', error) //todo handle error
+                error => console.log('An error occured.', error)
             )
             .then(
                 json => dispatch(responseGetMessages(json))
@@ -45,7 +45,7 @@ export const serverAddRoom = (roomName) => {
         const roomId = store.getState().selectedChatRoom.id
         
         return {
-            type: `server/${NEW_ROOM}`, //todo move to common
+            type: `server/${NEW_ROOM}`,
             payload: {roomName}
         }
 }
@@ -80,18 +80,22 @@ export const getRoomListData = () => {
 }
 
 export const NEW_MESSAGE = 'NEW_MESSAGE'
-export const localSendMessage = (username, message) => {
+export const localSendMessage = (message) => {
+
+    const username = store.getState().user.username
+    
     return {
-        type: NEW_MESSAGE, //todo move to common
+        type: NEW_MESSAGE,
         payload: {username, message}
     }
 }
-export const serverSendMessage = (username, message) => {
+export const serverSendMessage = (message) => {
 
+    const username = store.getState().user.username
     const roomId = store.getState().selectedChatRoom.id
     
     return {
-        type: `server/${NEW_MESSAGE}`, //todo move to common
+        type: `server/${NEW_MESSAGE}`,
         payload: {username, message, roomId}
     }
 }
@@ -99,8 +103,16 @@ export const serverSendMessage = (username, message) => {
 export const SUBSCRIBE_TO_ROOM = 'SUBSCRIBE_TO_ROOM'
 export const subscribeToRoom = (roomId = 1) => {
     return {
-        type: `server/${SUBSCRIBE_TO_ROOM}`, //todo move to common
+        type: `server/${SUBSCRIBE_TO_ROOM}`,
         payload: {roomId}
+    }
+}
+
+export const NEW_USERNAME = 'NEW_USERNAME'
+export const newUsername = (username) => {
+    return {
+        type: NEW_USERNAME,
+        payload: {username}
     }
 }
 
