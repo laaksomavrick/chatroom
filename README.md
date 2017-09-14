@@ -1,9 +1,19 @@
 # chatroom
 
-This (in-progress) application serves as an exercise to learn React, Redux, and server side JavaScript. It's a simple, canonical chat application.
+This application served me as an exercise to learn React, Redux, and server side JavaScript. It's a simple, canonical chat application. Given this was my first attempt with this set of technologies, it is not particularly feature rich, but I learned a lot!
 
-The application is very rough currently as I've been between ideas on what to implement and how to orient the architecture (I'm used to MVC on the server and using sockets + express with Redux has lent itself to a more event based architecture). 
+[[https://github.com/laaksomavrick/chatroom/tree/master/img/example.gif|alt=example]]
 
-React + Redux is great. I'd like to use this pattern in my work going forward - the data flow is easy to reason about, and modeling an application in this paradigm leads to a natural separation of concerns (views, events, event handlers).
+`
+git clone https://github.com/laaksomavrick/chatroom.git
+`
 
-I specifically chose to use express over a more full fledged solution (ie sails) to cut my teeth with a more minimal framework. Realization: I'm basically implementing something like sails regardless, so next time I'll stick to a cookie cutter framework vs picking and choosing my dependencies.
+create a database in mysql
+
+run the queries in `database/database.sql`
+
+edit `env.js` with the appropriate values
+
+`npm start`
+
+
