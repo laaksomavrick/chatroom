@@ -4,6 +4,9 @@ This application served me as an exercise to learn React, Redux, and server side
 
 ![alt text](https://raw.githubusercontent.com/laaksomavrick/chatroom/master/img/example.gif)
 
+![alt text](https://raw.githubusercontent.com/laaksomavrick/chatroom/master/img/example2.gif)
+
+
 `
 git clone https://github.com/laaksomavrick/chatroom.git
 `
