@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
-import { MessageList } from '../components/MessageList'
+import MessageList from '../components/MessageList'
 import { getRoomData, subscribeToRoom } from '../actions/actions'
 
 
@@ -13,13 +14,15 @@ class ChatroomContainer extends Component {
     componentDidMount() {
         const { dispatch } = this.props
         dispatch(subscribeToRoom())
-        dispatch(getRoomData())
+        dispatch(getRoomData())        
     }
 
     render() {
         const { selectedChatRoom } = this.props
         return (
-            <MessageList selectedChatRoom={selectedChatRoom}/>
+            <MessageList 
+                selectedChatRoom={selectedChatRoom}
+            /> 
         )
     }
 
